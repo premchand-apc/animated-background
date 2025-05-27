@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animated Background</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      width: 100%;
+    }
+
+    .fill {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      background: linear-gradient(to bottom, white, rgb(234, 71, 234));
+      overflow: hidden;
+    }
+
+    .fill div.box {
+      position: absolute;
+      background: rgba(202, 19, 99, 0.2);
+      border: 2px solid rgb(194, 40, 194);
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.7);
+    }
+
+    .box1 { height: 80px; width: 80px; left: 50%; bottom: -15%; animation: move1 15s linear infinite; }
+    .box2 { height: 120px; width: 120px; left: 30%; bottom: -10%; animation: move2 15s linear infinite; }
+    .box3 { height: 50px; width: 50px; left: 60%; bottom: -20%; animation: move2 15s linear infinite; }
+    .box4 { height: 60px; width: 60px; left: 70%; bottom: -10%; animation: move1 15s linear infinite; }
+    .box5 { height: 100px; width: 100px; left: 20%; bottom: -15%; animation: move1 15s linear infinite; }
+    .box6 { height: 80px; width: 80px; right: 18%; bottom: -10%; animation: move3 15s linear infinite; }
+    .box7 { height: 100px; width: 100px; right: 10%; bottom: -20%; animation: move2 15s linear infinite; }
+    .box8 { height: 90px; width: 90px; left: 10%; bottom: -5%; animation: move2 15s linear infinite; }
+
+    @media (max-width: 1024px) {
+      .box1 { height: 60px; width: 60px; left: 45%; }
+      .box2 { height: 90px; width: 90px; left: 25%; }
+      .box3 { height: 40px; width: 40px; left: 55%; }
+      .box4 { height: 50px; width: 50px; left: 65%; }
+      .box5 { height: 80px; width: 80px; left: 15%; }
+      .box6 { height: 60px; width: 60px; right: 12%; }
+      .box7 { height: 80px; width: 80px; right: 5%; }
+      .box8 { height: 70px; width: 70px; left: 5%; }
+    }
+
+    @media (max-width: 600px) {
+      .box1 { height: 40px; width: 40px; left: 40%; }
+      .box2 { height: 60px; width: 60px; left: 20%; }
+      .box3 { height: 30px; width: 30px; left: 50%; }
+      .box4 { height: 40px; width: 40px; left: 60%; }
+      .box5 { height: 50px; width: 50px; left: 10%; }
+      .box6 { height: 40px; width: 40px; right: 10%; }
+      .box7 { height: 60px; width: 60px; right: 3%; }
+      .box8 { height: 50px; width: 50px; left: 3%; }
+    }
+
+    @keyframes move1 {
+      0% { transform: translateY(0) rotateZ(0deg); opacity: 1; }
+      100% { transform: translateY(-500px) rotateZ(360deg); opacity: 0; }
+    }
+
+    @keyframes move2 {
+      0% { transform: translateY(0) rotateZ(0deg); opacity: 1; }
+      100% { transform: translateY(-500px) rotateZ(300deg); opacity: 0; }
+    }
+
+    @keyframes move3 {
+      0% { transform: translateY(0) rotateZ(0deg); opacity: 1; }
+      100% { transform: translateY(-500px) rotateZ(250deg); opacity: 0; }
+    }
+
+    .hello-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 3rem;
+      color: #880e88;
+      z-index: 10;
+      opacity: 0;
+      transition: opacity 5s ease-in-out;
+    }
+
+    .loading-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #880e88;
+      z-index: 10;
+    }
+
+    .loading-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(to right, #ff66cc, #cc00cc);
+      transition: width 10s linear;
+    }
+  </style>
+</head>
+<body>
+  <div class="fill">
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div class="box box3"></div>
+    <div class="box box4"></div>
+    <div class="box box5"></div>
+    <div class="box box6"></div>
+    <div class="box box7"></div>
+    <div class="box box8"></div>
+
+    <div class="loading-container" id="loader">
+      <div class="loading-bar" id="bar"></div>
+    </div>
+
+    <h1 class="hello-text" id="hello">Pora P**a...</h1>
+  </div>
+
+  <script>
+    const bar = document.getElementById("bar");
+    setTimeout(() => {
+      bar.style.width = "100%";
+    }, 100); 
+
+    setTimeout(() => {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("hello").style.opacity = 1;
+    }, 10100); 
+  </script>
+</body>
+</html>
